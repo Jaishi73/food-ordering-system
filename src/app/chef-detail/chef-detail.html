@@ -1,0 +1,74 @@
+
+<div class="cd-page">
+  <!-- Back + Chef Header -->
+  <header class="cd-header">
+    <button class="cd-back-btn" (click)="goBack()">← Back</button>
+    <div class="cd-chef-profile">
+      <div 
+        class="cd-chef-photo" 
+        [style.backgroundImage]="'url(' + chef.image + ')'"
+      ></div>
+      <div class="cd-chef-details">
+        <h1 class="cd-chef-name">{{ chef.name }}</h1>
+        <p class="cd-chef-speciality">{{ chef.speciality }} Specialist</p>
+        <div class="cd-chef-stats">
+          <span>{{ chef.experience }} yrs exp</span>
+          <span>⭐ {{ chef.rating }}</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Chef's Today's Menu -->
+  <section class="cd-section">
+    <div class="cd-meals-header">
+      <h2>Today's Menu</h2>
+      <div class="cd-search">
+        <span>🔍</span>
+        <input 
+          type="text" 
+          [(ngModel)]="searchText"
+          placeholder="Search dishes..."
+        />
+      </div>
+    </div>
+
+    <div class="cd-meals-grid">
+      <article 
+        class="cd-meal-card" 
+        *ngFor="let m of filteredMeals"
+      >
+        <div 
+          class="cd-meal-photo"
+          [style.backgroundImage]="'url(' + m.image + ')'"
+        ></div>
+        <div class="cd-meal-info">
+          <h3>{{ m.name }}</h3>
+          <p class="cd-meal-desc">{{ m.desc }}</p>
+          <div class="cd-meal-meta">
+            <span>${{ m.price }}</span>
+            <span>{{ m.time }} min</span>
+            <span>⭐ {{ m.rating }}</span>
+          </div>
+          <div class="cd-meal-footer">
+            <button class="cd-add-btn" (click)="addToCart(m)">
+              Add • ${{ m.price }}
+            </button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+ 
+ <!-- Checkout Bar (NOW UPDATES VISUALLY) -->
+<div class="cd-checkout-bar" *ngIf="cartCount > 0">
+  <div class="cd-cart-summary">
+    <span>{{ cartCount }} items • ${{ getTotal().toFixed(2) }}</span>
+  </div>
+  <button class="cd-checkout-btn" (click)="goToCheckout()">
+    Checkout
+  </button>
+</div>
+
+</div>

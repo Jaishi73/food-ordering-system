@@ -1,0 +1,122 @@
+<div class="co-page">
+  <!-- Header -->
+  <header class="co-header">
+    <button class="co-back-btn" (click)="goBack()">← Back</button>
+    <h1>Checkout</h1>
+    <div class="co-cart-badge">{{ cartItems.length }} Items</div>
+  </header>
+
+  <!-- Order Summary -->
+  <section class="co-section" *ngIf="!orderPlaced">
+    <h2>Your Order</h2>
+    
+    <div class="co-cart-items">
+      <div class="co-cart-item" *ngFor="let item of cartItems">
+        <div class="co-item-image" 
+             [style.backgroundImage]="'url(' + item.image + ')'">
+        </div>
+        <div class="co-item-details">
+          <h3>{{ item.name }}</h3>
+          <div class="co-quantity-controls">
+            <button class="co-qty-btn" (click)="decreaseQuantity(item)">−</button>
+            <span class="co-qty">{{ item.quantity }}</span>
+            <button class="co-qty-btn" (click)="increaseQuantity(item)">+</button>
+          </div>
+        </div>
+        <div class="co-item-price">
+          ${{ (item.price * item.quantity).toFixed(2) }}
+          <button class="co-remove-btn" (click)="removeItem(item)">✕</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Totals -->
+    <div class="co-totals">
+      <div class="co-total-row">
+        <span>Subtotal</span>
+        <span>${{ totalAmount.toFixed(2) }}</span>
+      </div>
+      <div class="co-total-row">
+        <span>Delivery</span>
+        <span>${{ deliveryCharge }}</span>
+      </div>
+      <div class="co-total-row grand">
+        <span>Grand Total</span>
+        <span>${{ grandTotal.toFixed(2) }}</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Address Form -->
+  <section class="co-section" *ngIf="!orderPlaced">
+    <h2>Delivery Address</h2>
+    <form class="co-address-form">
+      <input 
+        [(ngModel)]="address.street" 
+        name="street" 
+        placeholder="Street Address"
+        required
+      />
+      <input 
+        [(ngModel)]="address.city" 
+        name="city" 
+        placeholder="City"
+      />
+      <input 
+        [(ngModel)]="address.pincode" 
+        name="pincode" 
+        placeholder="Pincode"
+      />
+      <input 
+        [(ngModel)]="address.phone" 
+        name="phone" 
+        type="tel"
+        placeholder="Phone Number"
+        required
+      />
+    </form>
+  </section>
+
+  <!-- Payment Methods -->
+  <section class="co-section" *ngIf="!orderPlaced">
+    <h2>Payment Method</h2>
+    <div class="co-payment-options">
+      <label 
+        *ngFor="let option of paymentOptions"
+        class="co-payment-option"
+        [class.active]="paymentMethod === option.id"
+      >
+        <input 
+          type="radio" 
+          [value]="option.id" 
+          [(ngModel)]="paymentMethod"
+          name="payment"
+        />
+        <span class="co-payment-icon">{{ option.icon }}</span>
+        <span>{{ option.label }}</span>
+      </label>
+    </div>
+  </section>
+
+  <!-- Place Order Button -->
+  <button 
+    class="co-place-order-btn" 
+    *ngIf="!orderPlaced"
+    (click)="placeOrder()"
+  >
+    Place Order • ${{ grandTotal.toFixed(2) }}
+  </button>
+
+  <!-- Success Screen -->
+  <div class="co-success-screen" *ngIf="orderPlaced">
+    <div class="co-success-content">
+      <div class="co-success-icon">✅</div>
+      <h2>Order Placed!</h2>
+      <p>Estimated delivery: {{ estimatedDelivery }}</p>
+      <button class="co-new-order-btn" (click)="goBack()">
+        New Order
+      </button>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,10 @@
+@import '../login/login.css';
+
+.success-banner {
+  background-color: rgba(6, 167, 125, 0.08);
+  color: var(--success-color);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--spacing-md);
+}

@@ -1,0 +1,303 @@
+<div class="hero-page">
+  <header class="hero-header">
+    <div class="hero-logo">
+      <span class="hero-logo-icon">🍽️</span>
+      <span class="hero-logo-text">OneTimeBite</span>
+    </div>
+
+    <nav class="hero-nav">
+      <a href="#" class="hero-nav-link hero-nav-link-active">Home</a>
+      <a href="#" class="hero-nav-link">Chefs</a>
+      <a href="#" class="hero-nav-link">Menu</a>
+      <a href="#" class="hero-nav-link">About</a>
+    </nav>
+
+    <div class="hero-auth">
+      <button class="hero-btn ghost" routerLink="/signup">Sign Up</button>
+    <button class="hero-btn primary" routerLink="/login">Login</button>
+    </div>
+  </header>
+
+  <main class="hero-main">
+    <!-- LEFT: TEXT -->
+    <section class="hero-left animate-slideInLeft">
+      <p class="hero-kicker">Best &amp; Fastest</p>
+      <h1 class="hero-title">
+         <span>Chef-Made</span>  Meals, Delivered Fresh
+      </h1>
+      <p class="hero-body">
+        Order your meals at any time and get them delivered from your favorite
+        chefs. One-time orders with real-time tracking and chef scores.
+      </p>
+
+      <div class="hero-actions">
+        <button class="hero-cta primary" routerLink="/signup">Get Started</button>
+        <button class="hero-cta outline">
+          ▶
+          <span>How It Works</span>
+        </button>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat-card">
+          <strong>120+</strong>
+          <span>Active Chefs</span>
+        </div>
+        <div class="stat-card">
+          <strong>2k+</strong>
+          <span>Daily Orders</span>
+        </div>
+        <div class="stat-card">
+          <strong>4.9</strong>
+          <span>Avg Rating</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+    <!-- CATEGORY STRIP -->
+    <section class="uh-section">
+      <h3 class="uh-section-title">What’s on your mind?</h3>
+      <div class="uh-category-strip">
+     
+
+        <button 
+          class="uh-cat-card"
+          *ngFor="let c of categories"
+          [class.active]="activeCategory === c.key"
+          (click)="setCategory(c.key)"
+        >
+          <div
+            class="uh-cat-img"
+            [style.backgroundImage]="'url(' + c.image + ')'"
+          ></div>
+          <span class="uh-cat-label">{{ c.label }}</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- TODAY'S MEAL -->
+    <section class="uh-section">
+      <div class="uh-meal-header">
+        <h3 class="uh-section-title">Today’s Meal</h3>
+ </div>
+        <div class="uh-meal-search-row">
+          <div class="uh-meal-search">
+            <span>🔍</span>
+            <input 
+              type="text"
+              placeholder="Search for places, cuisines, and more"
+              />
+          </div>
+          <div class="sort-text"><span>sort </span>
+         <div class="sort-icon-container">
+              <div class="arrow up"></div>
+              <div class="arrow down"></div>
+         </div>
+        </div>
+        </div>
+     
+
+      <div class="uh-meal-row">
+        <article
+          class="uh-meal-card animate-scaleIn"
+          *ngFor="let m of filteredMeals"
+        >
+          <div
+            class="uh-meal-photo"
+            [style.backgroundImage]="'url(' + m.image + ')'"
+          ></div>
+
+          <div class="uh-meal-info">
+            <h4>{{ m.name }}</h4>
+            <p class="uh-meal-desc">{{ m.desc }}</p>
+            <div class="uh-meal-meta">
+              <h3><span>${{ m.price }}</span></h3>
+              <span>{{ m.time }} min</span>
+              <span>{{ m.rating }}⭐⭐⭐⭐</span>
+            </div>
+            <div class="uh-meal-footer">
+  <button class="uh-add-btn" (click)="addToCart(m)">Add</button>
+  <button class="uh-icon-small">♡</button>
+</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- CHEFS SECTION -->
+    <section class="uh-section">
+      <div class="uh-meal-header">
+        <h3 class="uh-section-title">Choose Your Chef</h3>
+      </div>
+
+      <div class="uh-chef-row">
+        <article
+          class="uh-chef-card"
+          *ngFor="let chef of chefs"
+                  >
+          <div
+            class="uh-chef-photo"
+            [style.backgroundImage]="'url(' + chef.image + ')'"
+          ></div>
+
+          <div class="uh-chef-info">
+            <h4 class="uh-chef-name">{{ chef.name }}</h4>
+            <p class="uh-chef-exp">{{ chef.experience }} years experience</p>
+            <div class="uh-chef-meta">
+              <span>⭐ {{ chef.rating }}</span>
+              <span>{{ chef.speciality }}</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="deals-section">
+  <div class="deals-header">
+    <h2>Deals for you</h2>
+   
+  </div>
+
+  <div class="deals-container" id="dealsContainer">
+    <div class="deal-card">
+      <div class="deal-icon">%</div>
+      <div>
+        <h4>Flat 50% Off</h4>
+        <p>No code required</p>
+      </div>
+    </div>
+
+    <div class="deal-card">
+      <div class="deal-icon">🔥</div>
+      <div>
+        <h4>Items at ₹99</h4>
+        <p>On select dishes</p>
+      </div>
+    </div>
+
+    <div class="deal-card">
+      <div class="deal-icon">%</div>
+      <div>
+        <h4>Chef Special Offer</h4>
+        <p>Limited time only</p>
+      </div>
+    </div>
+
+    <div class="deal-card">
+      <div class="deal-icon">🎁</div>
+      <div>
+        <h4>Free Dessert</h4>
+        <p>On orders above ₹399</p>
+      </div>
+    </div>
+
+     <div class="deal-card">
+      <div class="deal-icon">🎁</div>
+      <div>
+        <h4>Free Dessert</h4>
+        <p>On orders above ₹399</p>
+      </div>
+    </div>
+
+     <div class="deal-card">
+      <div class="deal-icon">🎁</div>
+      <div>
+        <h4>Free Dessert</h4>
+        <p>On orders above ₹399</p>
+      </div>
+    </div>
+
+     <div class="deal-card">
+      <div class="deal-icon">🎁</div>
+      <div>
+        <h4>Free Dessert</h4>
+        <p>On orders above ₹399</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="uh-footer">
+  <!-- Promo Section -->
+  <section class="uh-footer-promo">
+    <div class="promo-content">
+      <div class="promo-text">
+        <h3>Get 50% OFF +</h3>
+        <p>₹0 Delivery Fee | ₹0 Packaging Fee | ₹0 Platform Fee</p>
+      </div>
+      <div class="promo-code">
+        <p>Use Code:</p>
+        <div class="code-box">FIRST3</div>
+      </div>
+      <div class="qr-section">
+        <div class="qr-image"></div>
+        <p>Scan to download</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Footer -->
+  <section class="uh-footer-main">
+    <div class="footer-container">
+      <!-- Brand Column -->
+      <div class="footer-column">
+        <h4 class="footer-brand">OneTimeBite</h4>
+        <p class="footer-tagline">Delicious food, delivered fast</p>
+        <div class="footer-socials">
+          <a href="#" class="social-link">📱</a>
+          <a href="#" class="social-link">📧</a>
+          <a href="#" class="social-link">🌐</a>
+        </div>
+      </div>
+
+      <!-- Company Column -->
+      <div class="footer-column">
+        <h5 class="footer-heading">COMPANY</h5>
+        <ul class="footer-links">
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#careers">Careers</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#press">Press</a></li>
+        </ul>
+      </div>
+
+      <!-- Help Column -->
+      <div class="footer-column">
+        <h5 class="footer-heading">GET HELP</h5>
+        <ul class="footer-links">
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+          <li><a href="#support">Support</a></li>
+          <li><a href="#feedback">Feedback</a></li>
+        </ul>
+      </div>
+
+      <!-- Explore Column -->
+      <div class="footer-column">
+        <h5 class="footer-heading">EXPLORE</h5>
+        <ul class="footer-links">
+          <li><a href="#restaurants">Restaurants</a></li>
+          <li><a href="#chefs">Featured Chefs</a></li>
+          <li><a href="#offers">Offers</a></li>
+          <li><a href="#delivery">Delivery Areas</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="footer-bottom">
+      <div class="footer-bottom-left">
+        <p>&copy; 2026 OneTimeBite. All rights reserved.</p>
+      </div>
+      <div class="footer-bottom-right">
+        <a href="#privacy">Privacy Policy</a>
+        <span class="divider">•</span>
+        <a href="#terms">Terms & Conditions</a>
+      </div>
+    </div>
+  </section>
+</footer>
+
+
+</div>
