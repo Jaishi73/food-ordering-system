@@ -108,7 +108,6 @@
 .hero-main {
   max-width: 1200px;
   width: 100%;
-
   padding: 14px;
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
@@ -841,7 +840,7 @@ width: 260px;
 }
 
 
-/* Simple entrance + hover animation for cards */
+
 @keyframes uh-fadeUp {
   from {
     opacity: 0;
@@ -944,22 +943,12 @@ width: 260px;
    
   }
 
-  .hero-right {
-    order: -1;
-  }
+ 
 
   .hero-title {
     font-size: 34px;
   }
 
-   .uh-hero {
-    margin-left: 16px;
-margin-right: 16px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    max-height: fit-content;
-  }
  
   .uh-meal-card {
     width: 230px;
